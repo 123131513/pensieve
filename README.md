@@ -5,9 +5,9 @@ http://web.mit.edu/pensieve/
 ### Prerequisites
 - Create a virtual environment with Python 3.8
 - This migration was tested around Ubuntu 18.04, Python 3.8, TensorFlow 2.7.0 and TFLearn 0.5.0
-- For running `rl_server/rl_server_no_training.py`, the practical minimum is:
+- For running `rl_server/rl_server_no_training.py`, the practical minimum is the following pinned set:
 ```
-pip install tensorflow tflearn matplotlib
+pip install tensorflow==2.7.0 tflearn==0.5.0 'protobuf<3.21' 'Pillow<10'
 ```
 
 Notes:
@@ -15,6 +15,12 @@ Notes:
 - Do not run `python setup.py` on a modern host unless you explicitly want the old Mahimahi / Apache / Selenium setup.
 - Online inference does not require a GPU. CPU execution is sufficient.
 - Training can run on CPU, but it is significantly slower than GPU training.
+- The TensorFlow checkpoint loader in `rl_server_no_training.py` still assumes you start the script from `rl_server/`.
+- A working startup sequence on a modern host is:
+```
+cd rl_server
+python rl_server_no_training.py
+```
 
 ### Training
 - To train a new model, put training data in `sim/cooked_traces` and testing data in `sim/cooked_test_traces`, then in `sim/` run `python get_video_sizes.py` and then run
