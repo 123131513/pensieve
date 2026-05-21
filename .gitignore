@@ -1,3 +1,7 @@
 sim/test_results/
 sim/results/
 .pytest_cache/
+.venv-pensieve/
+__pycache__/
+*.py[cod]
+rl_server/results/log
